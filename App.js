@@ -7,39 +7,59 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerStyles}> Calculator App (Discount)</Text>
+      <Text style={styles.Header_Styles}> Calculator App (Discount)</Text>
       <TextInput
-        style={styles.inputStyles}
+        style={styles.Input_Styles}
+        value={Original_Price}
+        onChange={(field) => SetPriceOriginal(field.target.value)}
         placeholder="Enter Original Price"
       />
       <TextInput
-        style={[styles.inputStyles, { marginTop: 6 }]}
+        style={[styles.Input_Styles, { marginTop: 6 }]}
+        value={Discount_Percent}
+        onChange={(field) => setPriceDiscount(field.target.value)}
         placeholder="Discount (%)"
       />
+      <View style={styles.Discout_Style}>
+        <Text style={styles.pricingStyles}>
+          Amount Saved: {Original_Price * (Discount_Percent / 100)}${" "}
+        </Text>
+        <Text style={styles.Pricing_Style}>
+          Price After discount: {Original_Price * (Discount_Percent / 100)}$
+        </Text>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: "grey",
+    backgroundColor: "#BEBDBD"
   },
-  headerStyles: {
+  Header_Styles: {
     textAlign: "center",
     backgroundColor: "#63f542",
     marginTop: 0,
-    marginBottom: 40,
+    marginBottom: 45,
     padding: 5,
-    fontSize: 25,
+    fontSize: 30,
     fontWeight: "bold",
     color: "#fff"
   },
-  inputStyles: {
-    borderWidth: 1,
+  Input_Styles: {
+    borderWidth: 3,
     borderColor: "black",
     width: "100%",
     padding: 5,
     margin: "auto",
     borderRadius: 4
+  },
+  Discout_Style: {
+    textAlign: "center",
+    marginTop: 10
+  },
+  Pricing_Style: {
+    fontWeight: "italic",
+    fontSize: 15
   }
 });
